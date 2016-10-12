@@ -1,0 +1,59 @@
+\documentclass[a4paper,parskip=half, twoside, ngerman, 12pt,BCOR = 11 mm, DIV15, bibliography=totocnumbered]{scrbook}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{calc}
+\usepackage{lipsum}
+%------------------------------------------------------------------------------
+%Mathematik
+\usepackage{lmodern,amsmath,amssymb,amsthm, mathrsfs, tensor}
+\numberwithin{equation}{chapter} %Setzt den equation-Zaehler nach jeder Section zurueck
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}} %Definiert den Stil
+\relpenalty=9999 %Penalty fuer inline-math-mode Zeilenumbruch nach Relationen
+\binoppenalty=9999 %Penalty fuer inline-math-mode Zeilenumbruch nach Binaeren Operatoren
+%------------------------------------------------------------------------------
+%Referenzierung
+\usepackage{hyperref}
+%------------------------------------------------------------------------------
+%Grafik
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+\usepackage{graphicx}
+\graphicspath{{./plot/}}
+\usepackage{svg}
+%------------------------------------------------------------------------------
+% Formatierungen
+%1,5 facher Zeilenabstand
+\linespread{1.5}
+\setlength{\footnotesep}{\baselineskip}
+\usepackage{xspace, placeins, verbatim}
+\raggedbottom
+
+%------------------------------------------------------------------------------
+%Farbe 
+\usepackage{color}
+%------------------------------------------------------------------------------
+%Literaturverzeichnis
+
+%------------------------------------------------------------------------------
+
+%Neue Kommandos
+%vierdimensionale physikalische Objekte sind fett + mathcal
+\newcommand{\RZ}[1]{\boldsymbol{#1}} %RZ=Raumzeit
+%Scri+
+\newcommand{\scri}{$\mathscr{I}^+$}
+\newcommand{\scrimath}{{\mathscr{I}^+}}
+\newcommand{\rh}{r_{\mathrm h}} 
+\newcommand{\sh}{\sigma_{\mathrm h}}
+\newcommand{\sH}{\sigma_{\mathcal H}}
+\newcommand{\dsH}{\Delta\sigma_{\mathcal H}}
+\newcommand{\aH}{{\hat{\mathcal H}}}
+\newcommand{\Ah}{{A_{\mathrm h}}}
+\newcommand{\gG}[5]{\tilde\gamma^{#1#2}\tilde\Gamma^{#3}_{#4#5}}
+\newcommand{\e}{\mathrm{e}}
+
+\newcommand{\zB}{z.\,B.\xspace}
+\renewcommand{\dh}{d.\,h.\xspace}
+
+\newcommand\picturescale{0.9}
+\newcommand\einzelbild{0.6}

@@ -1,0 +1,42 @@
+\input{../../preamble}
+
+\usetikzlibrary{decorations.pathmorphing}
+
+\tikzset{snake it/.style={decorate, decoration=snake}}
+
+\begin{document}
+\thispagestyle{empty}
+\def\scale{5}
+\def\x{0.15*\scale}
+\begin{tikzpicture}[scale = \picturescale]
+
+%Hintergrund
+
+\draw (\scale,0) -- (\scale/2,\scale/2);
+\draw (\scale,0) -- (\scale/2,-\scale/2);
+\draw (\scale/2,\scale/2) -- (\scale/2,-\scale/2);
+
+\node[above] at (\scale/2,\scale/2) {$i^+$};
+\node[below] at (\scale/2,-\scale/2) {$i^-$};
+\node[above right] at (3*\scale/4,\scale/4) {\scri};
+\node[below right] at (3*\scale/4,-\scale/4) {$\mathscr{I}^-$};
+\node[right] at (\scale,0) {$i^0$};
+
+%Cauchy Blatt
+\draw[very thick] (\scale/2,-0.1*\scale) to [out=0, in = 200] (3*\scale/4,-0.05*\scale);
+\draw[very thick, gray] (3*\scale/4,-0.05*\scale) to [out=20, in = 180] (\scale,0);
+
+%Lichtartiges Blatt
+\draw[very thick, dotted] (3*\scale/4,-0.05*\scale) -- (3*\scale/4 + \x,-0.05*\scale + \x);
+\draw[very thick, gray, dotted] (3*\scale/4,-0.05*\scale) -- (\scale/2,-0.05*\scale - \scale/4);
+
+%Hyperboloidales Blatt
+\draw[very thick, dashed] (\scale/2,\scale/20) to [out=0, in = 220] (5*\scale/6,\scale/6);
+
+%Punkte
+\draw[fill] (\scale,0) circle [radius=0.01*\scale];
+\draw[fill] (\scale/2,\scale/2) circle [radius=0.01*\scale];
+\draw[fill] (\scale/2,-\scale/2) circle [radius=0.01*\scale];
+
+\end{tikzpicture}
+\end{document}

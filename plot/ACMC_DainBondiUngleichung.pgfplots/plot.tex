@@ -1,0 +1,67 @@
+\input{../../preamble}
+
+\begin{document}
+\newsavebox{\mybox}
+\savebox{\mybox}{%
+\begin{tikzpicture}
+  \begin{axis}[
+  			   axis background/.style={fill=white},
+  			   ymode = log,
+  			   xmin=-0.004,
+  			   xmax=0.004,
+  			   grid=major,
+               width=6cm,
+               height=4cm,
+               ytick = {1e-4,1e-6,1e-8,1e-10},
+            ]
+    \pgfplotsset{every axis plot/.append style={thick}} 
+	\pgfplotstableread{MB_j05_up}
+		\datatable
+		\addplot[color = blue, mark = none,style = solid, smooth] table[y = 11,x=2] from \datatable;
+	 \pgfplotstableread{MB_j09_up}
+		 \datatable
+	 \addplot[color = red, mark = none, style = dashed, smooth] table[y = 11,x=2] from \datatable;
+
+	\pgfplotstableread{MB_j05_down}
+		\datatable
+		\addplot[color = blue, mark = none,style = solid, smooth] table[y = 11,x=2] from \datatable;
+	\pgfplotstableread{MB_j09_down}
+		\datatable
+	\addplot[color = red, mark = none, style = dashed, smooth] table[y = 11,x=2] from \datatable;
+  \end{axis}
+\end{tikzpicture}
+}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[scale = \picturescale]
+\begin{axis}[
+	title = $1-\epsilon_{\text{AB}}$,
+	xlabel = $\Delta\sigma_{\cal H}$,
+	xmin = -0.05,
+	xmax = 0.05,
+	grid = major,
+	width = \einzelbild*\textwidth
+]
+	\pgfplotsset{every axis plot/.append style={very thick}} 
+	\pgfplotstableread{MB_j05_up}
+		\datatable
+		\addplot[color = blue, mark = none,style = solid] table[y = 11,x=2] from \datatable;
+	\addlegendentry{$j=0.5$}
+	 \pgfplotstableread{MB_j09_up}
+	 \datatable
+	 \addplot[color = red, mark = none, style = dashed] table[y = 11,x=2] from \datatable;
+	 \addlegendentry{$j=0.9$}
+
+	\pgfplotstableread{MB_j05_down}
+		\datatable
+		\addplot[color = blue, mark = none,style = solid] table[y = 11,x=2] from \datatable;
+	\pgfplotstableread{MB_j09_down}
+		\datatable
+	\addplot[color = red, mark = none, style = dashed] table[y = 11,x=2] from \datatable;
+
+	\draw (axis cs: -0.01,0.025)node{\usebox{\mybox}};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
