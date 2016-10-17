@@ -15,17 +15,17 @@ all: $(TARGETS)
 # Das Target clean hat die Aufgabe, alle erzeugten Dateien zu löschen, damit man nötigenfalls
 # einen sauberen Start bekommt, wenn irgendwas klemmt. .PHONY bedeutet, dass das Target
 # bei jedem Aufruf neu erzeugt wird
-.PHONY: clean
+.PHONY: clean FORCE_MAKE
 clean:
-	rm -f $(TARGETS) $(wildcard *.gptex/plot.tex) $(wildcard *.gptex/*-inc.eps) $(wildcard *.gptex/*-inc-eps-converted-to.pdf) $(wildcard *.gptex/*.aux) $(wildcard *.gptex/*.log)
-	rm -f $(wildcard *.sh/plot/*)
+	for d in $(wildcard ./*.gptex); do $(MAKE) -C $$d -f ../GnuplotTex.mk clean; done
+	rm -f $(wildcard ./*.pdf)
 
 # Das %-Symbol in einer Regel ist ein Platzhalter, diese Regel erzeugt also %.pdf aus einem
 # schon existierenden %/plot.tex
 # Diese Kommandos stehen, wegen der "; \"-Zeilenenden quasi als ein Kettenbefehl hintereinander
 # das ist nötig, damit der Ordnerwechsel auf alle Kommandos wirkt
 
-#Dies ist für TIKZ und PGFPLOTS
+# Dies ist für TIKZ und PGFPLOTS
 %.pdf: %.pgfplots/plot.tex ../preamble.tex
 	cd $*.pgfplots; \
 	pdflatex plot.tex; \
@@ -33,5 +33,10 @@ clean:
 	mv plot.pdf ../$*.pdf
 
 
+# Dies ist für GnuPlot und Latex
+%.gptex/plot.pdf: %.gptex/plot.plt FORCE_MAKE
+	$(MAKE) -C $*.gptex -f ../GnuplotTex.mk plot.pdf
 
-
+%.pdf: %.gptex/plot.pdf
+	cp -l $< $@~
+	mv $@~ $@
