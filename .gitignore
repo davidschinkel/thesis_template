@@ -1,3 +1,4 @@
+
 *.pdf
 *.aux
 *.log
@@ -11,3 +12,7 @@
 *.run.xml
 *.toc
 *.synctex.gz
+
+*/*.gptex/*.run
+*/*.gptex/*.cfg
+*/*.gptex/plot-inc.eps
