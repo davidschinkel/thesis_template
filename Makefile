@@ -26,7 +26,7 @@ all: document.pdf
 clean:
 	latexmk -C
 	cd plot && $(MAKE) clean
-	rm ./tmp/document.*
+	rm -f ./tmp/document.*
 
 plot:
 	cd plot && $(MAKE)
